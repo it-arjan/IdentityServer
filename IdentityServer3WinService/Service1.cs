@@ -24,22 +24,26 @@ namespace IdentityServer3WinService
 
         private void CheckHealth()
         {
-            if (Helpers.Appsettings.SiliconClientId() == null) throw new Exception("setting 'SiliconClientId' is not present in app.config");
-            if (Helpers.Appsettings.SiliconClientSecret() == null) throw new Exception("setting 'SiliconClientSecret' is not present in app.config");
-            if (Helpers.Appsettings.FrontendClientId() == null) throw new Exception("setting 'FrontendClientId' is not present in app.config");
-            if (Helpers.Appsettings.FrontendClientSecret() == null) throw new Exception("setting 'FrontendClientSecret' is not present in app.config");
+            _logger.Debug("Checking app.config settings..");
+            if (Helpers.Appsettings.SiliconClientId() == null) throw new Exception(MissingSetting("SiliconClientId"));
+            if (Helpers.Appsettings.SiliconClientSecret() == null) throw new Exception(MissingSetting("SiliconClientSecret"));
+            if (Helpers.Appsettings.FrontendClientId() == null) throw new Exception(MissingSetting("FrontendClientId"));
+            if (Helpers.Appsettings.FrontendClientSecret() == null) throw new Exception(MissingSetting("FrontendClientSecret"));
 
-            if (ConfigurationManager.AppSettings.Get("facing") == null) throw new Exception("setting 'facing' is not present in app.config");
+            if (Helpers.Appsettings.Hostname() == null) throw new Exception(MissingSetting(Helpers.Appsettings.HostnameKey()));
+            if (Helpers.Appsettings.Port() == null) throw new Exception(MissingSetting(Helpers.Appsettings.PortKey()));
+            if (Helpers.Appsettings.Scheme() == null) throw new Exception(MissingSetting(Helpers.Appsettings.SchemeKey()));
+            if (Helpers.Appsettings.RedirectBackUrl() == null) throw new Exception(MissingSetting(Helpers.Appsettings.RedirectBackUrlKey()));
 
-            if (Helpers.Appsettings.HostUrl() == null) throw new Exception(Helpers.Appsettings.HostKey() + " is not present in app.config");
-            if (Helpers.Appsettings.RedirectBackUrl() == null) throw new Exception(Helpers.Appsettings.RedirectBackUrlKey() + " is not present in app.config");
-
-            _logger.Debug("facing = {0}", ConfigurationManager.AppSettings.Get("facing"));
-            _logger.Debug("{0} = {1}", Helpers.Appsettings.HostKey(), ConfigurationManager.AppSettings.Get(Helpers.Appsettings.HostKey()));
+            _logger.Debug("config setting seem ok..");
+            _logger.Debug("Url = {0}", Helpers.Appsettings.HostUrl());
             _logger.Debug("{0} = {1}", Helpers.Appsettings.RedirectBackUrlKey(), ConfigurationManager.AppSettings.Get(Helpers.Appsettings.RedirectBackUrlKey()));
-            _logger.Debug("-");
+            _logger.Debug("..done with config checks");
         }
-
+        private string MissingSetting(string setting)
+        {
+            return string.Format("setting {0} is not present in app.config");
+        }
         protected override void OnStart(string[] args)
         {
             _logger.Info("=========== Starting http auth Service =============");

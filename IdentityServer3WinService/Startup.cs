@@ -16,7 +16,7 @@ namespace IdentityServer3WinService
         private ILogger _logger = LogManager.CreateLogger(typeof(Startup));
         public void Configuration(IAppBuilder app)
         {
-            string certname = "local.identityserver";
+            string subject = Helpers.Appsettings.Hostname();
             var options = new IdentityServerOptions
             {
                 Factory = new IdentityServerServiceFactory()
@@ -34,9 +34,9 @@ namespace IdentityServer3WinService
                     }
                },
                 
-                SigningCertificate = Config.Certificate.Get(certname),
+                SigningCertificate = Config.Certificate.Get(subject),
                 EnableWelcomePage = true,
-                RequireSsl = false
+                RequireSsl = true
             };
             app.UseIdentityServer(options);
         }

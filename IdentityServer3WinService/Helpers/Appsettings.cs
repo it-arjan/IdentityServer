@@ -11,24 +11,43 @@ namespace IdentityServer3WinService.Helpers
     {
         public static string HostUrl()
         {
-            var key = HostKey();
-            return ConfigurationManager.AppSettings.Get(key);
+            return string.Format("{0}://{1}:{2}/", Scheme(), Hostname(), Port());
         }
 
-        public static string HostKey()
+        public static string Scheme()
         {
-            return string.Format("facing.{0}.hostname", ConfigurationManager.AppSettings.Get("facing").ToLower());
+            return ConfigurationManager.AppSettings.Get(SchemeKey());
+        }
+        public static string Port()
+        {
+            return ConfigurationManager.AppSettings.Get(PortKey());
+        }
+        public static string Hostname()
+        {
+            return ConfigurationManager.AppSettings.Get(HostnameKey());
+        }
+
+        public static string SchemeKey()
+        {
+            return "scheme";
+        }
+        public static string HostnameKey()
+        {
+            return "hostname";
+        }
+        public static string PortKey()
+        {
+            return "port";
         }
 
         public static string RedirectBackUrl()
         {
-            var key = RedirectBackUrlKey();
-            return ConfigurationManager.AppSettings.Get(key);
+            return ConfigurationManager.AppSettings.Get(RedirectBackUrlKey());
         }
 
         public static string RedirectBackUrlKey()
         {
-            return string.Format("facing.{0}.redirectback.to", ConfigurationManager.AppSettings.Get("facing").ToLower());
+            return "auth.redirect.back.to";
         }
 
         public static string SiliconClientId()

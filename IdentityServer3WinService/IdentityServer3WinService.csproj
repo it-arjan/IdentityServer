@@ -146,6 +146,9 @@
     </None>
     <None Include="IdentityServer3WinService_1_TemporaryKey.pfx" />
     <None Include="IdentityServer3WinService_TemporaryKey.pfx" />
+    <None Include="Install.bat">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
