@@ -24,7 +24,7 @@ namespace IdentityServer3WinService
 
         private void CheckHealth()
         {
-            _logger.Debug("Checking app.config settings..");
+            _logger.Debug("Checking config settings..");
             if (Helpers.Appsettings.SiliconClientId() == null) throw new Exception(MissingSetting("SiliconClientId"));
             if (Helpers.Appsettings.SiliconClientSecret() == null) throw new Exception(MissingSetting("SiliconClientSecret"));
             if (Helpers.Appsettings.FrontendClientId() == null) throw new Exception(MissingSetting("FrontendClientId"));
