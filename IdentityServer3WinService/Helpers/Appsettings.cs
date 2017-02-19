@@ -47,7 +47,7 @@ namespace IdentityServer3WinService.Helpers
 
         public static string RedirectBackUrlKey()
         {
-            return "auth.redirect.back.to";
+            return "after.auth.redirect";
         }
 
         public static string SiliconClientId()
