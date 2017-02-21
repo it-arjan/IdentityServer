@@ -81,11 +81,6 @@ namespace IdentityServer3WinService
 
                     Flow = Flows.Implicit,
 
-                    //ClientSecrets = new List<Secret> // not needed for Implicit flow
-                    //{
-                    //    new Secret(Helpers.Appsettings.FrontendClientSecret().Sha256())
-                    //},
-
                     AllowedScopes = new List<string>
                     {
                         Constants.StandardScopes.OpenId,

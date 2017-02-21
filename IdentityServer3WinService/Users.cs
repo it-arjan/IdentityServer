@@ -17,8 +17,8 @@ namespace IdentityServer3WinService
         {
             new InMemoryUser
             {
-                Username = "bob",
-                Password = "realBigSecret",
+                Username = Helpers.Appsettings.UserBob(),
+                Password = Helpers.Appsettings.UserBobPassword(),
                 Subject = "bobbie@bob.com", //unique userid
                 Claims = new[]
                 {
