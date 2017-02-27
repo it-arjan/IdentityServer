@@ -20,26 +20,32 @@ namespace IdentityServer3WinService
                 },
                 new Scope
                 {
-                    Name = Helpers.IdSrv3.ScopeMvcFrontEnd
+                    Name = Helpers.IdSrv3.ScopeMvcFrontEnd,
+                    Type = ScopeType.Identity,
+                    IncludeAllClaimsForUser = true
                 },
                 new Scope
                 {
-                    Name = Helpers.IdSrv3.ScopeNancyApi
+                    Name = Helpers.IdSrv3.ScopeNancyApi,
+                    Type = ScopeType.Resource
                 },
                 new Scope
                 {
-                    Name = Helpers.IdSrv3.ScopeServiceStackApi
+                    Name = Helpers.IdSrv3.ScopeServiceStackApi,
+                    Type = ScopeType.Resource
                 },
                 new Scope
                 {
-                    Name = Helpers.IdSrv3.ScopeWcfService
+                    Name = Helpers.IdSrv3.ScopeWcfService,
+                    Type = ScopeType.Resource
                 },
                 new Scope
                 {
                     Name = StandardScopes.Roles.Name
-                }
+                },
             };
-            scopes.AddRange(StandardScopes.All); 
+            // all identity scopes
+            scopes.AddRange(StandardScopes.All);
             return scopes;
         }
     }

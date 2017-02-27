@@ -19,12 +19,27 @@ namespace IdentityServer3WinService
             {
                 Username = Helpers.Appsettings.UserBob(),
                 Password = Helpers.Appsettings.UserBobPassword(),
-                Subject = "bobbie@bob.com", //unique userid
+                Subject = "bob@hitmaster.com", //unique userid
                 Claims = new[]
                 {
-                    new Claim(Constants.ClaimTypes.Name, "Bobbie bob"),
-                    new Claim(Constants.ClaimTypes.GivenName, "Bobbie"),
-                    new Claim(Constants.ClaimTypes.FamilyName, "bob")
+                    new Claim(Constants.ClaimTypes.Name, "Bob Dylan"),
+                    new Claim(Constants.ClaimTypes.GivenName, "Bob"),
+                    new Claim(Constants.ClaimTypes.FamilyName, "Dylan"),
+                    new Claim(Constants.ClaimTypes.Role, "Guest"),
+                    new Claim(Constants.ClaimTypes.Role, "SendMessage")
+                }
+            },
+            new InMemoryUser
+            {
+                Username = "bob2",
+                Password = Helpers.Appsettings.UserBobPassword(),
+                Subject = "bob2@hitmaster.com", //unique userid
+                Claims = new[]
+                {
+                    new Claim(Constants.ClaimTypes.Name, "Bob without Messages"),
+                    new Claim(Constants.ClaimTypes.GivenName, "Bob2"),
+                    new Claim(Constants.ClaimTypes.FamilyName, "no messages"),
+                    new Claim(Constants.ClaimTypes.Role, "Guest"),
                 }
             }
         };
