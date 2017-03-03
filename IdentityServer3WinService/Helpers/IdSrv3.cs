@@ -8,8 +8,10 @@ namespace IdentityServer3WinService.Helpers
 {
     static class IdSrv3
     {
-        public const string ScopeEntryQueueApi = "EntryQueueApi";
+        public const string ScopeMcvFrontEndHuman = "MvcFrontEndHuman";
+
         public const string ScopeMvcFrontEnd = "MvcFrontEnd";
+        public const string ScopeEntryQueueApi = "EntryQueueApi";
         public const string ScopeNancyApi = "NancyApi";
         public const string ScopeServiceStackApi = "ServiceStackApi";
         public const string ScopeWcfService = "WcfService";

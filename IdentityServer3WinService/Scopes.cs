@@ -16,13 +16,20 @@ namespace IdentityServer3WinService
             //requiring acces TO
                 new Scope
                 {
-                    Name = Helpers.IdSrv3.ScopeEntryQueueApi
+                    Name = Helpers.IdSrv3.ScopeMcvFrontEndHuman,
+                    Type = ScopeType.Identity,
+                    IncludeAllClaimsForUser = true
                 },
                 new Scope
                 {
                     Name = Helpers.IdSrv3.ScopeMvcFrontEnd,
-                    Type = ScopeType.Identity,
-                    IncludeAllClaimsForUser = true
+                    Type = ScopeType.Resource
+                },
+                new Scope
+                {
+                    Name = Helpers.IdSrv3.ScopeEntryQueueApi,
+                    Type = ScopeType.Resource
+
                 },
                 new Scope
                 {

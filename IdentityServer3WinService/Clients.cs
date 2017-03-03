@@ -85,7 +85,7 @@ namespace IdentityServer3WinService
                     {
                         Constants.StandardScopes.OpenId,
                         Constants.StandardScopes.Roles,
-                        Helpers.IdSrv3.ScopeMvcFrontEnd
+                        Helpers.IdSrv3.ScopeMcvFrontEndHuman
                     },
                     RedirectUris = new List<string>
                     {
