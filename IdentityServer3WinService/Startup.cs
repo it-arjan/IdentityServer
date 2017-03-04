@@ -16,7 +16,7 @@ namespace IdentityServer3WinService
         private ILogger _logger = LogManager.CreateLogger(typeof(Startup));
         public void Configuration(IAppBuilder app)
         {
-            string subject = Helpers.Appsettings.Hostname();
+            string certificateSubject = Helpers.Appsettings.Hostname();
             var options = new IdentityServerOptions
             {
                 Factory = new IdentityServerServiceFactory()
@@ -30,11 +30,11 @@ namespace IdentityServer3WinService
                     CookieOptions = new CookieOptions
                     {
                         AllowRememberMe = false,
-                        ExpireTimeSpan = TimeSpan.FromMinutes(5)
+                        ExpireTimeSpan = TimeSpan.FromMinutes(15 * Helpers.IdSrv3.SessionSetting)
                     }
                },
                 
-                SigningCertificate = Config.Certificate.Get(subject),
+                SigningCertificate = Config.Certificate.Get(certificateSubject),
                 EnableWelcomePage = true,
                 RequireSsl = true
             };

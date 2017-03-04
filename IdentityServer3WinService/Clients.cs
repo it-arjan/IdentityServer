@@ -22,8 +22,8 @@ namespace IdentityServer3WinService
                 Enabled = true,
 
                 AccessTokenType     = AccessTokenType.Jwt,
-                AccessTokenLifetime     = 300 * Helpers.IdSrv3.SessionSetting,
-                IdentityTokenLifetime   = 300 * Helpers.IdSrv3.SessionSetting,
+                AccessTokenLifetime     = 900 * Helpers.IdSrv3.SessionSetting,
+                IdentityTokenLifetime   = 900 * Helpers.IdSrv3.SessionSetting,
 
                 Flow = Flows.ClientCredentials,
 
@@ -42,39 +42,40 @@ namespace IdentityServer3WinService
                 }
             },
              // human is involved
-                //new Client
-                //{
-                //    ClientName = "Web Entrypoint On Behalf of a User",
-                //    ClientId = "webentrypoint_onbehalf",
-                //    Enabled = true,
-                //    AccessTokenType = AccessTokenType.Jwt,
-                //    Flow = Flows.ResourceOwner,
-
-                //    ClientSecrets = new List<Secret>
-                //    {
-                //        new Secret("21B5F798-BEXY-42ZT-8568-0425B9DSDC3B".Sha256())
-                //    },
-
-                //    //AllowAccessToAllScopes = true
-                //    AllowedScopes = new List<string>
-                //    {
-                //        Constants.StandardScopes.OpenId,
-                //        Constants.StandardScopes.Roles,
-                //        "MvcFrontEnd",
-                //        "NancyApi",
-                //        "ServiceStackApi",
-                //        "WcfService"
-                //   }
-                //},
                 new Client
                 {
-                    ClientName = "MVC Frontend",
+                    ClientName = "Mvc Ajax On Behalf of a User",
+                    ClientId = "mvcAjax",
+                    Enabled = false,
+
+                    AccessTokenType = AccessTokenType.Jwt,
+                    AccessTokenLifetime = 900 * Helpers.IdSrv3.SessionSetting,
+                    IdentityTokenLifetime=900 * Helpers.IdSrv3.SessionSetting,
+
+                    Flow = Flows.ResourceOwner,
+
+                    ClientSecrets = new List<Secret>
+                    {
+                        new Secret("mvcAjax".Sha256())
+                    },
+
+                    //AllowAccessToAllScopes = true
+                    AllowedScopes = new List<string>
+                    {
+                        Constants.StandardScopes.OpenId,
+                        Constants.StandardScopes.Roles,
+                        Helpers.IdSrv3.ScopeMvcFrontEnd,
+                   }
+                },
+                new Client
+                {
+                    ClientName = "MVC Frontend Human",
                     ClientId = Helpers.Appsettings.FrontendClientId(),
                     Enabled = true,
 
                     AccessTokenType = AccessTokenType.Jwt,
                     AccessTokenLifetime = 900 * Helpers.IdSrv3.SessionSetting,
-                    IdentityTokenLifetime=900 * Helpers.IdSrv3.SessionSetting,
+                    IdentityTokenLifetime = 900 * Helpers.IdSrv3.SessionSetting,
 
                     //AbsoluteRefreshTokenLifetime=60,
                     //AuthorizationCodeLifetime=60,
@@ -87,15 +88,8 @@ namespace IdentityServer3WinService
                         Constants.StandardScopes.Roles,
                         Helpers.IdSrv3.ScopeMcvFrontEndHuman
                     },
-                    RedirectUris = new List<string>
-                    {
-                        Helpers.Appsettings.RedirectBackUrl()
-                    },
-                    PostLogoutRedirectUris= new List<string>
-                    {
-                        Helpers.Appsettings.RedirectBackUrl()
-                    },
-
+                    RedirectUris = Helpers.Appsettings.RedirectBackUrlList(),
+                    PostLogoutRedirectUris= Helpers.Appsettings.RedirectBackUrlList(),
                     RequireConsent=false
                     //AllowRememberConsent =true
 

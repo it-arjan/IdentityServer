@@ -32,11 +32,11 @@ namespace IdentityServer3WinService
             if (Helpers.Appsettings.Hostname() == null) throw new Exception(MissingSetting(Helpers.Appsettings.HostnameKey));
             if (Helpers.Appsettings.Port() == null) throw new Exception(MissingSetting(Helpers.Appsettings.PortKey));
             if (Helpers.Appsettings.Scheme() == null) throw new Exception(MissingSetting(Helpers.Appsettings.SchemeKey));
-            if (Helpers.Appsettings.RedirectBackUrl() == null) throw new Exception(MissingSetting(Helpers.Appsettings.RedirectBackUrlKey));
+            if (Helpers.Appsettings.RedirectBackUrlList() == null) throw new Exception(MissingSetting(Helpers.Appsettings.RedirectBackUrlKey));
 
             _logger.Debug("config setting seem ok..");
             _logger.Debug("Url = {0}", Helpers.Appsettings.HostUrl());
-            _logger.Debug("{0} = {1}", Helpers.Appsettings.RedirectBackUrlKey, Helpers.Appsettings.RedirectBackUrl());
+            _logger.Debug("{0} = {1}", Helpers.Appsettings.RedirectBackUrlKey, string.Join(",", Helpers.Appsettings.RedirectBackUrlList()));
             _logger.Debug("..done with config checks");
         }
         private string MissingSetting(string setting)

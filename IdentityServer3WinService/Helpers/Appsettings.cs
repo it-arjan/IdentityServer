@@ -17,7 +17,7 @@ namespace IdentityServer3WinService.Helpers
         public const string SchemeKey = "scheme";
         public const string HostnameKey = "hostname";
         public const string PortKey = "port";
-        public const string RedirectBackUrlKey = "after.auth.redirect";
+        public const string RedirectBackUrlKey = "after.auth.redirect.csv";
 
         public static string HostUrl()
         {
@@ -37,9 +37,9 @@ namespace IdentityServer3WinService.Helpers
             return ConfigurationManager.AppSettings.Get(HostnameKey);
         }
 
-        public static string RedirectBackUrl()
+        public static List<string> RedirectBackUrlList()
         {
-            return ConfigurationManager.AppSettings.Get(RedirectBackUrlKey);
+            return ConfigurationManager.AppSettings.Get(RedirectBackUrlKey).Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries).ToList();
         }
 
 

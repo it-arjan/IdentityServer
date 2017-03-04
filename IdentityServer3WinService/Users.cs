@@ -31,13 +31,13 @@ namespace IdentityServer3WinService
             },
             new InMemoryUser
             {
-                Username = "bob2",
+                Username = "bob-no-messages",
                 Password = Helpers.Appsettings.UserBobPassword(),
                 Subject = "bob2@hitmaster.com", //unique userid
                 Claims = new[]
                 {
                     new Claim(Constants.ClaimTypes.Name, "Bob without Messages"),
-                    new Claim(Constants.ClaimTypes.GivenName, "Bob2"),
+                    new Claim(Constants.ClaimTypes.GivenName, "Bob-no-messages"),
                     new Claim(Constants.ClaimTypes.FamilyName, "no messages"),
                     new Claim(Constants.ClaimTypes.Role, "Guest"),
                 }
