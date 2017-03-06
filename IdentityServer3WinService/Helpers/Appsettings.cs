@@ -18,7 +18,8 @@ namespace IdentityServer3WinService.Helpers
         public const string HostnameKey = "hostname";
         public const string PortKey = "port";
         public const string RedirectBackUrlKey = "after.auth.redirect.csv";
-
+        public const string LogLevelKey = "log.level";
+        
         public static string HostUrl()
         {
             return string.Format("{0}://{1}:{2}/", Scheme(), Hostname(), Port());
@@ -41,7 +42,11 @@ namespace IdentityServer3WinService.Helpers
         {
             return ConfigurationManager.AppSettings.Get(RedirectBackUrlKey).Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries).ToList();
         }
-
+        
+        public static string LogLevel()
+        {
+            return ConfigurationManager.AppSettings.Get(LogLevelKey);
+        }
 
         public static string SiliconClientId()
         {

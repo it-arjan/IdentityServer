@@ -13,7 +13,7 @@ namespace IdentityServer3WinService
 {
     public class Startup
     {
-        private ILogger _logger = LogManager.CreateLogger(typeof(Startup));
+        private ILogger _logger = LogManager.CreateLogger(typeof(Startup), Helpers.Appsettings.LogLevel());
         public void Configuration(IAppBuilder app)
         {
             string certificateSubject = Helpers.Appsettings.Hostname();
@@ -36,7 +36,6 @@ namespace IdentityServer3WinService
                 
                 SigningCertificate = Config.Certificate.Get(certificateSubject),
                 EnableWelcomePage = true,
-                RequireSsl = true
             };
             app.UseIdentityServer(options);
         }

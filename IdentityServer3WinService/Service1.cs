@@ -16,7 +16,7 @@ namespace IdentityServer3WinService
     public partial class Service1 : ServiceBase
     {
         private IDisposable _httpServer;
-        private ILogger _logger = LogManager.CreateLogger(typeof(Service1));
+        private ILogger _logger = LogManager.CreateLogger(typeof(Service1), Helpers.Appsettings.LogLevel());
         public Service1()
         { 
             InitializeComponent();
@@ -24,7 +24,7 @@ namespace IdentityServer3WinService
 
         private void CheckHealth()
         {
-            _logger.Debug("Checking config settings..");
+            _logger.Info("Checking config settings..");
             if (Helpers.Appsettings.SiliconClientId() == null) throw new Exception(MissingSetting("SiliconClientId"));
             if (Helpers.Appsettings.SiliconClientSecret() == null) throw new Exception(MissingSetting("SiliconClientSecret"));
             if (Helpers.Appsettings.FrontendClientId() == null) throw new Exception(MissingSetting(Helpers.Appsettings.FrontendClientIdKey));
@@ -34,10 +34,10 @@ namespace IdentityServer3WinService
             if (Helpers.Appsettings.Scheme() == null) throw new Exception(MissingSetting(Helpers.Appsettings.SchemeKey));
             if (Helpers.Appsettings.RedirectBackUrlList() == null) throw new Exception(MissingSetting(Helpers.Appsettings.RedirectBackUrlKey));
 
-            _logger.Debug("config setting seem ok..");
-            _logger.Debug("Url = {0}", Helpers.Appsettings.HostUrl());
-            _logger.Debug("{0} = {1}", Helpers.Appsettings.RedirectBackUrlKey, string.Join(",", Helpers.Appsettings.RedirectBackUrlList()));
-            _logger.Debug("..done with config checks");
+            _logger.Info("config setting seem ok..");
+            _logger.Info("Url = {0}", Helpers.Appsettings.HostUrl());
+            _logger.Info("{0} = {1}", Helpers.Appsettings.RedirectBackUrlKey, string.Join(",", Helpers.Appsettings.RedirectBackUrlList()));
+            _logger.Info("..done with config checks");
         }
         private string MissingSetting(string setting)
         {
@@ -51,7 +51,6 @@ namespace IdentityServer3WinService
             // web options doesn't work
             var url = Helpers.Appsettings.HostUrl();
             _httpServer = WebApp.Start<Startup>(url);
-            _logger.Info("Listening on {0}", url);
         }
 
         protected override void OnStop()
