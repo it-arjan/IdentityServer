@@ -142,7 +142,6 @@
   <ItemGroup>
     <None Include="App.config">
       <SubType>Designer</SubType>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="IdentityServer3WinService_1_TemporaryKey.pfx" />
     <None Include="IdentityServer3WinService_TemporaryKey.pfx" />
