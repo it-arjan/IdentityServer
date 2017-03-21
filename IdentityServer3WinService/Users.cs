@@ -17,8 +17,8 @@ namespace IdentityServer3WinService
         {
             new InMemoryUser
             {
-                Username = Helpers.Appsettings.UserBob(),
-                Password = Helpers.Appsettings.UserBobPassword(),
+                Username = Helpers.Appsettings.User("bob"),
+                Password = Helpers.Appsettings.UserPassword("bob"),
                 Subject = "bob@hitmaster.com", //unique userid
                 Claims = new[]
                 {
@@ -31,8 +31,23 @@ namespace IdentityServer3WinService
             },
             new InMemoryUser
             {
-                Username = "bob-no-messages",
-                Password = Helpers.Appsettings.UserBobPassword(),
+                Username = Helpers.Appsettings.User("admin"),
+                Password = Helpers.Appsettings.UserPassword("admin"),
+                Subject = "admin@messagequeuefrontend.com", //unique userid
+                Claims = new[]
+                {
+                    new Claim(Constants.ClaimTypes.Name, "admin"),
+                    new Claim(Constants.ClaimTypes.GivenName, "admin almighty"),
+                    new Claim(Constants.ClaimTypes.FamilyName, "almighty"),
+                    //new Claim(Constants.ClaimTypes.Role, "Guest"),
+                    //new Claim(Constants.ClaimTypes.Role, "SendMessage"),
+                    new Claim(Constants.ClaimTypes.Role, "admin")
+                }
+            },
+            new InMemoryUser
+            {
+                Username = "bob-no-mq",
+                Password = Helpers.Appsettings.UserPassword("bob"),
                 Subject = "bob2@hitmaster.com", //unique userid
                 Claims = new[]
                 {

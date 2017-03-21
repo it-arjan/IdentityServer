@@ -12,14 +12,15 @@ namespace IdentityServer3WinService.Helpers
         public const string SiliconClientIdKey = "SiliconClientId";
         public const string SiliconClientSecretKey = "SiliconClientSecret";
         public const string FrontendClientIdKey = "FrontendClientId";
-        public const string UserBobKey = "user.bob";
-        public const string UserBobPasswordKey = "user.bob.password";
+        public const string UserKey = "user.@replace-me@";
+        public const string UserPasswordKey = "user.@replace-me@.password";
         public const string SchemeKey = "scheme";
         public const string HostnameKey = "hostname";
         public const string PortKey = "port";
         public const string RedirectBackUrlKey = "after.auth.redirect.csv";
         public const string LogLevelKey = "log.level";
         
+        //private const
         public static string HostUrl()
         {
             return string.Format("{0}://{1}:{2}/", Scheme(), Hostname(), Port());
@@ -62,13 +63,13 @@ namespace IdentityServer3WinService.Helpers
             return ConfigurationManager.AppSettings.Get(FrontendClientIdKey);
         }
 
-        public static string UserBob()
+        public static string User(string name)
         {
-            return ConfigurationManager.AppSettings.Get(UserBobKey);
+            return ConfigurationManager.AppSettings.Get(UserKey.Replace("@replace-me@", name));
         }
-        public static string UserBobPassword()
+        public static string UserPassword(string name)
         {
-            return ConfigurationManager.AppSettings.Get(UserBobPasswordKey);
+            return ConfigurationManager.AppSettings.Get(UserPasswordKey.Replace("@replace-me@", name));
         }
     }
 }
