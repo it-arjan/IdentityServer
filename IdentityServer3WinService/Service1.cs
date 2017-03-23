@@ -1,22 +1,16 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Diagnostics;
-using System.Linq;
 using System.ServiceProcess;
-using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Owin.Hosting;
 using NLogWrapper;
-using System.Configuration;
+using IdentityServer3WinService.Helpers;
 
 namespace IdentityServer3WinService
 {
     public partial class Service1 : ServiceBase
     {
         private IDisposable _httpServer;
-        private ILogger _logger = LogManager.CreateLogger(typeof(Service1), Helpers.Appsettings.LogLevel());
+        private ILogger _logger = LogManager.CreateLogger(typeof(Service1), Appsettings.LogLevel());
         public Service1()
         { 
             InitializeComponent();
@@ -25,18 +19,18 @@ namespace IdentityServer3WinService
         private void CheckHealth()
         {
             _logger.Info("Checking config settings..");
-            if (Helpers.Appsettings.SiliconClientId() == null) throw new Exception(MissingSetting("SiliconClientId"));
-            if (Helpers.Appsettings.SiliconClientSecret() == null) throw new Exception(MissingSetting("SiliconClientSecret"));
-            if (Helpers.Appsettings.FrontendClientId() == null) throw new Exception(MissingSetting(Helpers.Appsettings.FrontendClientIdKey));
+            if (Appsettings.SiliconClientId() == null) throw new Exception(MissingSetting("SiliconClientId"));
+            if (Appsettings.SiliconClientSecret() == null) throw new Exception(MissingSetting("SiliconClientSecret"));
+            if (Appsettings.FrontendClientId() == null) throw new Exception(MissingSetting(Appsettings.FrontendClientIdKey));
 
-            if (Helpers.Appsettings.Hostname() == null) throw new Exception(MissingSetting(Helpers.Appsettings.HostnameKey));
-            if (Helpers.Appsettings.Port() == null) throw new Exception(MissingSetting(Helpers.Appsettings.PortKey));
-            if (Helpers.Appsettings.Scheme() == null) throw new Exception(MissingSetting(Helpers.Appsettings.SchemeKey));
-            if (Helpers.Appsettings.RedirectBackUrlList() == null) throw new Exception(MissingSetting(Helpers.Appsettings.RedirectBackUrlKey));
+            if (Appsettings.Hostname() == null) throw new Exception(MissingSetting(Appsettings.HostnameKey));
+            if (Appsettings.Port() == null) throw new Exception(MissingSetting(Appsettings.PortKey));
+            if (Appsettings.Scheme() == null) throw new Exception(MissingSetting(Appsettings.SchemeKey));
+            if (Appsettings.RedirectBackUrlList() == null) throw new Exception(MissingSetting(Appsettings.RedirectBackUrlKey));
 
             _logger.Info("config setting seem ok..");
-            _logger.Info("Url = {0}", Helpers.Appsettings.HostUrl());
-            _logger.Info("{0} = {1}", Helpers.Appsettings.RedirectBackUrlKey, string.Join(",", Helpers.Appsettings.RedirectBackUrlList()));
+            _logger.Info("Url = {0}", Appsettings.HostUrl());
+            _logger.Info("{0} = {1}", Appsettings.RedirectBackUrlKey, string.Join(",", Appsettings.RedirectBackUrlList()));
             _logger.Info("..done with config checks");
         }
         private string MissingSetting(string setting)
@@ -49,7 +43,7 @@ namespace IdentityServer3WinService
 
             CheckHealth();
             // web options doesn't work
-            var url = Helpers.Appsettings.HostUrl();
+            var url = Appsettings.HostUrl();
             _httpServer = WebApp.Start<Startup>(url);
         }
 

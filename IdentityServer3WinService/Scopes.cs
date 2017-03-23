@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using IdentityServer3.Core.Models;
-using IdentityServer3.Core;
+using IdentityServer3WinService.Helpers;
 
 namespace IdentityServer3WinService
 {
@@ -16,34 +16,34 @@ namespace IdentityServer3WinService
             //requiring acces TO
                 new Scope
                 {
-                    Name = Helpers.IdSrv3.ScopeMcvFrontEndHuman,
+                    Name = IdSrv3.ScopeMcvFrontEndHuman,
                     Type = ScopeType.Identity,
                     IncludeAllClaimsForUser = true
                 },
                 new Scope
                 {
-                    Name = Helpers.IdSrv3.ScopeMvcFrontEnd,
+                    Name = IdSrv3.ScopeMvcFrontEnd,
                     Type = ScopeType.Resource
                 },
                 new Scope
                 {
-                    Name = Helpers.IdSrv3.ScopeEntryQueueApi,
+                    Name = IdSrv3.ScopeEntryQueueApi,
                     Type = ScopeType.Resource
 
                 },
                 new Scope
                 {
-                    Name = Helpers.IdSrv3.ScopeNancyApi,
+                    Name = IdSrv3.ScopeNancyApi,
                     Type = ScopeType.Resource
                 },
                 new Scope
                 {
-                    Name = Helpers.IdSrv3.ScopeServiceStackApi,
+                    Name = IdSrv3.ScopeServiceStackApi,
                     Type = ScopeType.Resource
                 },
                 new Scope
                 {
-                    Name = Helpers.IdSrv3.ScopeWcfService,
+                    Name = IdSrv3.ScopeWcfService,
                     Type = ScopeType.Resource
                 },
                 new Scope

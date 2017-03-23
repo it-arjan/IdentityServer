@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using IdentityServer3.Core.Models;
 using IdentityServer3.Core;
+using IdentityServer3WinService.Helpers;
 
 namespace IdentityServer3WinService
 {
@@ -18,64 +19,39 @@ namespace IdentityServer3WinService
             new Client
             {
                 ClientName = "Silicon-only Client for site-site communication",
-                ClientId = Helpers.Appsettings.SiliconClientId(),
+                ClientId = Appsettings.SiliconClientId(),
                 Enabled = true,
 
                 AccessTokenType     = AccessTokenType.Jwt,
-                AccessTokenLifetime     = 900 * Helpers.IdSrv3.SessionSetting,
-                IdentityTokenLifetime   = 900 * Helpers.IdSrv3.SessionSetting,
+                AccessTokenLifetime     = Appsettings.SiliconIdtotkenLifetime(),
+                IdentityTokenLifetime   = Appsettings.SiliconAccesstotkenLifetime(),
 
                 Flow = Flows.ClientCredentials,
 
                 ClientSecrets = new List<Secret>
                 {
-                    new Secret(Helpers.Appsettings.SiliconClientSecret().Sha256())
+                    new Secret(Appsettings.SiliconClientSecret().Sha256())
                 },
 
                 AllowedScopes = new List<string>
                 {
-                    Helpers.IdSrv3.ScopeMvcFrontEnd, // for postback and AJAX call
-                    Helpers.IdSrv3.ScopeEntryQueueApi,
-                    Helpers.IdSrv3.ScopeNancyApi,
-                    Helpers.IdSrv3.ScopeServiceStackApi,
-                    Helpers.IdSrv3.ScopeWcfService
+                    IdSrv3.ScopeMvcFrontEnd, // for postback and AJAX call
+                    IdSrv3.ScopeEntryQueueApi,
+                    IdSrv3.ScopeNancyApi,
+                    IdSrv3.ScopeServiceStackApi,
+                    IdSrv3.ScopeWcfService
                 }
             },
-             // human is involved
-                new Client
-                {
-                    ClientName = "Mvc Ajax On Behalf of a User",
-                    ClientId = "mvcAjax",
-                    Enabled = false,
-
-                    AccessTokenType = AccessTokenType.Jwt,
-                    AccessTokenLifetime = 900 * Helpers.IdSrv3.SessionSetting,
-                    IdentityTokenLifetime=900 * Helpers.IdSrv3.SessionSetting,
-
-                    Flow = Flows.ResourceOwner,
-
-                    ClientSecrets = new List<Secret>
-                    {
-                        new Secret("mvcAjax".Sha256())
-                    },
-
-                    //AllowAccessToAllScopes = true
-                    AllowedScopes = new List<string>
-                    {
-                        Constants.StandardScopes.OpenId,
-                        Constants.StandardScopes.Roles,
-                        Helpers.IdSrv3.ScopeMvcFrontEnd,
-                   }
-                },
+ 
                 new Client
                 {
                     ClientName = "MVC Frontend Human",
-                    ClientId = Helpers.Appsettings.FrontendClientId(),
+                    ClientId = Appsettings.FrontendClientId(),
                     Enabled = true,
 
                     AccessTokenType = AccessTokenType.Jwt,
-                    AccessTokenLifetime = 900 * Helpers.IdSrv3.SessionSetting,
-                    IdentityTokenLifetime = 900 * Helpers.IdSrv3.SessionSetting,
+                    AccessTokenLifetime = Appsettings.HumanIdtotkenLifetime(),
+                    IdentityTokenLifetime = Appsettings.HumanAccesstotkenLifetime(),
 
                     //AbsoluteRefreshTokenLifetime=60,
                     //AuthorizationCodeLifetime=60,
@@ -86,14 +62,40 @@ namespace IdentityServer3WinService
                     {
                         Constants.StandardScopes.OpenId,
                         Constants.StandardScopes.Roles,
-                        Helpers.IdSrv3.ScopeMcvFrontEndHuman
+                        IdSrv3.ScopeMcvFrontEndHuman
                     },
-                    RedirectUris = Helpers.Appsettings.RedirectBackUrlList(),
-                    PostLogoutRedirectUris= Helpers.Appsettings.RedirectBackUrlList(),
+                    RedirectUris = Appsettings.RedirectBackUrlList(),
+                    PostLogoutRedirectUris= Appsettings.RedirectBackUrlList(),
                     RequireConsent=false
                     //AllowRememberConsent =true
 
                 }
+            // human is involved
+                //new Client
+                //{
+                //    ClientName = "Mvc Ajax On Behalf of a User",
+                //    ClientId = "mvcAjax",
+                //    Enabled = false,
+
+                //    AccessTokenType = AccessTokenType.Jwt,
+                //    AccessTokenLifetime = 900 * IdSrv3.SessionSetting,
+                //    IdentityTokenLifetime=900 * IdSrv3.SessionSetting,
+
+                //    Flow = Flows.ResourceOwner,
+
+                //    ClientSecrets = new List<Secret>
+                //    {
+                //        new Secret("mvcAjax".Sha256())
+                //    },
+
+                //    //AllowAccessToAllScopes = true
+                //    AllowedScopes = new List<string>
+                //    {
+                //        Constants.StandardScopes.OpenId,
+                //        Constants.StandardScopes.Roles,
+                //        IdSrv3.ScopeMvcFrontEnd,
+                //   }
+                //},
             };
         }
     }

@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using IdentityServer3.Core.Services.InMemory;
 using System.Security.Claims;
 using IdentityServer3.Core;
+using IdentityServer3WinService.Helpers;
 
 namespace IdentityServer3WinService
 {
@@ -17,8 +18,8 @@ namespace IdentityServer3WinService
         {
             new InMemoryUser
             {
-                Username = Helpers.Appsettings.User("bob"),
-                Password = Helpers.Appsettings.UserPassword("bob"),
+                Username = Appsettings.User("bob"),
+                Password = Appsettings.UserPassword("bob"),
                 Subject = "bob@hitmaster.com", //unique userid
                 Claims = new[]
                 {
@@ -31,8 +32,8 @@ namespace IdentityServer3WinService
             },
             new InMemoryUser
             {
-                Username = Helpers.Appsettings.User("admin"),
-                Password = Helpers.Appsettings.UserPassword("admin"),
+                Username = Appsettings.User("admin"),
+                Password = Appsettings.UserPassword("admin"),
                 Subject = "admin@messagequeuefrontend.com", //unique userid
                 Claims = new[]
                 {
@@ -46,8 +47,8 @@ namespace IdentityServer3WinService
             },
             new InMemoryUser
             {
-                Username = "bob-no-mq",
-                Password = Helpers.Appsettings.UserPassword("bob"),
+                Username = "bob-nomq",
+                Password = Appsettings.UserPassword("bob"),
                 Subject = "bob2@hitmaster.com", //unique userid
                 Claims = new[]
                 {

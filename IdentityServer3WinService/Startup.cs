@@ -4,19 +4,18 @@ using System.Linq;
 using System.Text;
 using Owin;
 using IdentityServer3.Core.Configuration;
-using IdentityServer3.Core.Services.InMemory;
-using System.Security.Cryptography.X509Certificates;
-using System.Configuration;
+using IdentityServer3WinService.Helpers;
+
 using NLogWrapper;
 
 namespace IdentityServer3WinService
 {
     public class Startup
     {
-        private ILogger _logger = LogManager.CreateLogger(typeof(Startup), Helpers.Appsettings.LogLevel());
+        private ILogger _logger = LogManager.CreateLogger(typeof(Startup), Appsettings.LogLevel());
         public void Configuration(IAppBuilder app)
         {
-            string certificateSubject = Helpers.Appsettings.Hostname();
+            string certificateSubject = Appsettings.Hostname();
             var options = new IdentityServerOptions
             {
                 Factory = new IdentityServerServiceFactory()
@@ -30,7 +29,7 @@ namespace IdentityServer3WinService
                     CookieOptions = new CookieOptions
                     {
                         AllowRememberMe = false,
-                        ExpireTimeSpan = TimeSpan.FromMinutes(15 * Helpers.IdSrv3.SessionSetting)
+                        ExpireTimeSpan = TimeSpan.FromMinutes(15 * IdSrv3.SessionSetting)
                     }
                },
                 

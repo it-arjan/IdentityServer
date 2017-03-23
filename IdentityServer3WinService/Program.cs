@@ -5,12 +5,13 @@ using System.ServiceProcess;
 using System.Text;
 using System.Threading.Tasks;
 using NLogWrapper;
+using IdentityServer3WinService.Helpers;
 
 namespace IdentityServer3WinService
 {
     static class Program
     {
-        static ILogger _logger = LogManager.CreateLogger(typeof(Program), Helpers.Appsettings.LogLevel());
+        static ILogger _logger = LogManager.CreateLogger(typeof(Program), Appsettings.LogLevel());
 
         /// <summary>
         /// The main entry point for the application.

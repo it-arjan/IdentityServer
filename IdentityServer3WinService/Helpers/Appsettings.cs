@@ -19,7 +19,11 @@ namespace IdentityServer3WinService.Helpers
         public const string PortKey = "port";
         public const string RedirectBackUrlKey = "after.auth.redirect.csv";
         public const string LogLevelKey = "log.level";
-        
+
+        public const string HumanIdtotkenLifetimeKey = "human.idtoken.lifetime";
+        public const string HumanAccesstotkenLifetimeKey = "human.idtoken.lifetime";
+        public const string SiliconIdtotkenLifetimeKey = "silicon.idtoken.lifetime";
+        public const string SiliconAccesstotkenLifetimeKey = "silicon.accesstoken.lifetime";
         //private const
         public static string HostUrl()
         {
@@ -71,5 +75,28 @@ namespace IdentityServer3WinService.Helpers
         {
             return ConfigurationManager.AppSettings.Get(UserPasswordKey.Replace("@replace-me@", name));
         }
+
+        public static int HumanIdtotkenLifetime()
+        {
+            var val = ConfigurationManager.AppSettings.Get(HumanIdtotkenLifetimeKey);
+            return val != null ? Convert.ToInt16(val) : 3600;
+        }
+        public static int HumanAccesstotkenLifetime()
+        {
+            var val = ConfigurationManager.AppSettings.Get(HumanAccesstotkenLifetimeKey);
+            return val != null ? Convert.ToInt16(val) : 3600;
+        }
+
+        public static int SiliconAccesstotkenLifetime()
+        {
+            var val = ConfigurationManager.AppSettings.Get(SiliconAccesstotkenLifetimeKey);
+            return val != null ? Convert.ToInt16(val) : 3600;
+        }
+        public static int SiliconIdtotkenLifetime()
+        {
+            var val = ConfigurationManager.AppSettings.Get(SiliconIdtotkenLifetimeKey);
+            return val != null ? Convert.ToInt16(val) : 3600;
+        }
+              
     }
 }
