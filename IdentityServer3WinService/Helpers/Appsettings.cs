@@ -20,10 +20,10 @@ namespace IdentityServer3WinService.Helpers
         public const string RedirectBackUrlKey = "after.auth.redirect.csv";
         public const string LogLevelKey = "log.level";
 
-        public const string HumanIdtotkenLifetimeKey = "human.idtoken.lifetime";
-        public const string HumanAccesstotkenLifetimeKey = "human.idtoken.lifetime";
-        public const string SiliconIdtotkenLifetimeKey = "silicon.idtoken.lifetime";
-        public const string SiliconAccesstotkenLifetimeKey = "silicon.accesstoken.lifetime";
+        public const string HumanIdtotkenLifetimeKey = "human.idtoken.lifetime.secs";
+        public const string HumanAccesstotkenLifetimeKey = "human.accesstoken.lifetime.secs";
+        public const string SiliconIdtotkenLifetimeKey = "silicon.idtoken.lifetime.secs";
+        public const string SiliconAccesstotkenLifetimeKey = "silicon.accesstoken.lifetime.secs";
         //private const
         public static string HostUrl()
         {
@@ -79,23 +79,23 @@ namespace IdentityServer3WinService.Helpers
         public static int HumanIdtotkenLifetime()
         {
             var val = ConfigurationManager.AppSettings.Get(HumanIdtotkenLifetimeKey);
-            return val != null ? Convert.ToInt16(val) : 3600;
+            return val != null ? Convert.ToInt16(val) : 3601;
         }
         public static int HumanAccesstotkenLifetime()
         {
             var val = ConfigurationManager.AppSettings.Get(HumanAccesstotkenLifetimeKey);
-            return val != null ? Convert.ToInt16(val) : 3600;
+            return val != null ? Convert.ToInt16(val) : 3601;
         }
 
         public static int SiliconAccesstotkenLifetime()
         {
             var val = ConfigurationManager.AppSettings.Get(SiliconAccesstotkenLifetimeKey);
-            return val != null ? Convert.ToInt16(val) : 3600;
+            return val != null ? Convert.ToInt16(val) : 3601;
         }
         public static int SiliconIdtotkenLifetime()
         {
             var val = ConfigurationManager.AppSettings.Get(SiliconIdtotkenLifetimeKey);
-            return val != null ? Convert.ToInt16(val) : 3600;
+            return val != null ? Convert.ToInt16(val) : 3601;
         }
               
     }

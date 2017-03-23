@@ -18,7 +18,7 @@ namespace IdentityServer3WinService
 
         private void CheckHealth()
         {
-            _logger.Info("Checking config settings..");
+            _logger.Info("=================== Checking config settings..");
             if (Appsettings.SiliconClientId() == null) throw new Exception(MissingSetting("SiliconClientId"));
             if (Appsettings.SiliconClientSecret() == null) throw new Exception(MissingSetting("SiliconClientSecret"));
             if (Appsettings.FrontendClientId() == null) throw new Exception(MissingSetting(Appsettings.FrontendClientIdKey));
@@ -30,6 +30,8 @@ namespace IdentityServer3WinService
 
             _logger.Info("config setting seem ok..");
             _logger.Info("Url = {0}", Appsettings.HostUrl());
+            _logger.Info("Human AccestokenLifetime = {0}", Appsettings.HumanAccesstotkenLifetime());
+            _logger.Info("Silicon AccestokenLifetime = {0}", Appsettings.SiliconAccesstotkenLifetime());
             _logger.Info("{0} = {1}", Appsettings.RedirectBackUrlKey, string.Join(",", Appsettings.RedirectBackUrlList()));
             _logger.Info("..done with config checks");
         }
