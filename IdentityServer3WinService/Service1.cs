@@ -30,8 +30,8 @@ namespace IdentityServer3WinService
 
             _logger.Info("config setting seem ok..");
             _logger.Info("Url = {0}", Appsettings.HostUrl());
-            _logger.Info("Human AccestokenLifetime = {0}", Appsettings.HumanAccesstotkenLifetime());
-            _logger.Info("Silicon AccestokenLifetime = {0}", Appsettings.SiliconAccesstotkenLifetime());
+            _logger.Info("Human AccestokenLifetime = {0}", Appsettings.HumanAccesstokenLifetime());
+            _logger.Info("Silicon AccestokenLifetime = {0}", Appsettings.SiliconAccesstokenLifetime());
             _logger.Info("{0} = {1}", Appsettings.RedirectBackUrlKey, string.Join(",", Appsettings.RedirectBackUrlList()));
             _logger.Info("..done with config checks");
         }

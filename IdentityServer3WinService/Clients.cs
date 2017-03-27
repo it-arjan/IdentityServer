@@ -23,8 +23,8 @@ namespace IdentityServer3WinService
                 Enabled = true,
 
                 AccessTokenType     = AccessTokenType.Jwt,
-                AccessTokenLifetime     = Appsettings.SiliconIdtotkenLifetime(),
-                IdentityTokenLifetime   = Appsettings.SiliconAccesstotkenLifetime(),
+                AccessTokenLifetime     = Appsettings.SiliconAccesstokenLifetime(),
+                IdentityTokenLifetime   = Appsettings.SiliconIdtokenLifetime(),
 
                 Flow = Flows.ClientCredentials,
 
@@ -50,8 +50,8 @@ namespace IdentityServer3WinService
                     Enabled = true,
 
                     AccessTokenType = AccessTokenType.Jwt,
-                    AccessTokenLifetime = Appsettings.HumanIdtotkenLifetime(),
-                    IdentityTokenLifetime = Appsettings.HumanAccesstotkenLifetime(),
+                    AccessTokenLifetime = Appsettings.HumanAccesstokenLifetime(),
+                    IdentityTokenLifetime = Appsettings.HumanIdtokenLifetime(),
 
                     //AbsoluteRefreshTokenLifetime=60,
                     //AuthorizationCodeLifetime=60,

@@ -29,7 +29,7 @@ namespace IdentityServer3WinService
                     CookieOptions = new CookieOptions
                     {
                         AllowRememberMe = false,
-                        ExpireTimeSpan = TimeSpan.FromMinutes(15 * IdSrv3.SessionSetting)
+                        ExpireTimeSpan = TimeSpan.FromSeconds(Appsettings.HumanCookieLifetime())
                     }
                },
                 

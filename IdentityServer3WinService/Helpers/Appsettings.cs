@@ -12,8 +12,8 @@ namespace IdentityServer3WinService.Helpers
         public const string SiliconClientIdKey = "SiliconClientId";
         public const string SiliconClientSecretKey = "SiliconClientSecret";
         public const string FrontendClientIdKey = "FrontendClientId";
-        public const string UserKey = "user.@replace-me@";
-        public const string UserPasswordKey = "user.@replace-me@.password";
+        public const string UserKey = "user.@-@";
+        public const string UserPasswordKey = "user.@-@.password";
         public const string SchemeKey = "scheme";
         public const string HostnameKey = "hostname";
         public const string PortKey = "port";
@@ -22,6 +22,9 @@ namespace IdentityServer3WinService.Helpers
 
         public const string HumanIdtotkenLifetimeKey = "human.idtoken.lifetime.secs";
         public const string HumanAccesstotkenLifetimeKey = "human.accesstoken.lifetime.secs";
+
+        public const string HumanCookieLifetimeKey = "human.cookie.lifetime.secs";
+        
         public const string SiliconIdtotkenLifetimeKey = "silicon.idtoken.lifetime.secs";
         public const string SiliconAccesstotkenLifetimeKey = "silicon.accesstoken.lifetime.secs";
         //private const
@@ -69,34 +72,41 @@ namespace IdentityServer3WinService.Helpers
 
         public static string User(string name)
         {
-            return ConfigurationManager.AppSettings.Get(UserKey.Replace("@replace-me@", name));
+            return ConfigurationManager.AppSettings.Get(UserKey.Replace("@-@", name));
         }
         public static string UserPassword(string name)
         {
-            return ConfigurationManager.AppSettings.Get(UserPasswordKey.Replace("@replace-me@", name));
+            return ConfigurationManager.AppSettings.Get(UserPasswordKey.Replace("@-@", name));
         }
 
-        public static int HumanIdtotkenLifetime()
+        public static int HumanIdtokenLifetime()
         {
-            var val = ConfigurationManager.AppSettings.Get(HumanIdtotkenLifetimeKey);
-            return val != null ? Convert.ToInt16(val) : 3601;
-        }
-        public static int HumanAccesstotkenLifetime()
-        {
-            var val = ConfigurationManager.AppSettings.Get(HumanAccesstotkenLifetimeKey);
-            return val != null ? Convert.ToInt16(val) : 3601;
+            return _getIntSetting(HumanIdtotkenLifetimeKey);
         }
 
-        public static int SiliconAccesstotkenLifetime()
+        public static int HumanAccesstokenLifetime()
         {
-            var val = ConfigurationManager.AppSettings.Get(SiliconAccesstotkenLifetimeKey);
+            return _getIntSetting(HumanCookieLifetimeKey);
+        }
+        public static int HumanCookieLifetime()
+        {
+            return _getIntSetting(HumanCookieLifetimeKey);
+        }
+
+        public static int SiliconAccesstokenLifetime()
+        {
+            return _getIntSetting(SiliconAccesstotkenLifetimeKey);
+        }
+
+        public static int SiliconIdtokenLifetime()
+        {
+            return _getIntSetting(SiliconIdtotkenLifetimeKey);
+        }
+
+        private static int _getIntSetting(string name)
+        {
+            var val = ConfigurationManager.AppSettings.Get(name);
             return val != null ? Convert.ToInt16(val) : 3601;
         }
-        public static int SiliconIdtotkenLifetime()
-        {
-            var val = ConfigurationManager.AppSettings.Get(SiliconIdtotkenLifetimeKey);
-            return val != null ? Convert.ToInt16(val) : 3601;
-        }
-              
     }
 }
