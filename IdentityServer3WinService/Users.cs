@@ -52,9 +52,9 @@ namespace IdentityServer3WinService
                 Subject = "bob2@hitmaster.com", //unique userid
                 Claims = new[]
                 {
-                    new Claim(Constants.ClaimTypes.Name, "Bob without Messages"),
-                    new Claim(Constants.ClaimTypes.GivenName, "Bob-no-messages"),
-                    new Claim(Constants.ClaimTypes.FamilyName, "no messages"),
+                    new Claim(Constants.ClaimTypes.Name, "Bob without MQ access"),
+                    new Claim(Constants.ClaimTypes.GivenName, "Bob-no-MQ"),
+                    new Claim(Constants.ClaimTypes.FamilyName, "no MQ"),
                     new Claim(Constants.ClaimTypes.Role, "Guest"),
                 }
             }

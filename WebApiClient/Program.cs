@@ -15,14 +15,14 @@ namespace WebApiClient
 {
     class Program
     {
-        static void CallApi(TokenResponse response)
+        static void CallApi(TokenResponse response, string Url)
         {
             var client = new System.Net.Http.HttpClient();
             if (!response.IsError)
             {
                 client.SetBearerToken(response.AccessToken);
-
-                Console.WriteLine(client.GetStringAsync("http://local.frontend/Message/PostBack").Result);
+                client.DefaultRequestHeaders.Add("Accept", "application/json");
+                Console.WriteLine(client.GetStringAsync(Url).Result);
             }
             else Console.WriteLine("Error getting the token: {0}", response.Error);
 
@@ -30,11 +30,11 @@ namespace WebApiClient
         static TokenResponse GetSiliconClientToken()
         {
             var client = new TokenClient(
-                "https://local.identityserver:5000/connect/token",
+                "http://local.identityserver:5000/connect/token",
                 "dev-silicon",
                 "dev-silicon-secret");
-
-            var token = client.RequestClientCredentialsAsync("MvcFrontEnd").Result;
+            
+            var token = client.RequestClientCredentialsAsync("ms-web-api2").Result;
             if (token.IsError)
                 Console.WriteLine("Error geting Token: {0} ", token.Error);
             return token;
@@ -48,6 +48,8 @@ namespace WebApiClient
             _logger.Trace("1 msg par {0}", "aap");
             _logger.Trace("geen msg pars");
 
+            CallApi(GetSiliconClientToken(), "http://local.azure.api/api/callme");
+            CallApi(GetSiliconClientToken(), "http://local.azure.api/api/callme/kerel");
             //var token = GetSiliconClientToken();
             ////var behalfToken = "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6IjFqNV9UQnJEMmxpR002VGVES0ZWTlhqenpWcyIsImtpZCI6IjFqNV9UQnJEMmxpR002VGVES0ZWTlhqenpWcyJ9.eyJpc3MiOiJodHRwczovL2xvY2FsLmlkZW50aXR5c2VydmVyOjUwMDAiLCJhdWQiOiJodHRwczovL2xvY2FsLmlkZW50aXR5c2VydmVyOjUwMDAvcmVzb3VyY2VzIiwiZXhwIjoxNDg4NTYxNDg1LCJuYmYiOjE0ODg1NjE0ODQsImNsaWVudF9pZCI6Im12Y0FqYXgiLCJzY29wZSI6Ik12Y0Zyb250RW5kIiwic3ViIjoiYm9iQGhpdG1hc3Rlci5jb20iLCJhdXRoX3RpbWUiOjE0ODg1NjE0ODMsImlkcCI6Imlkc3J2IiwiYW1yIjpbInBhc3N3b3JkIl19.hjeoNPhOAKUzUAKhSvZNl3hrvGa1D1O1ZPH35jNLSTBbZoyW7zRSJLJC9ipAJmpau80eICY1-fmIMUCauY-TBcT_5Y3Ldswvxkt-_Ls9ruykc8YpEX6S2lXqxaUHJEUpRNk6lTPE0EbAsBgJuN_c96QW5EXw3Vv-Wv8VhdJW13OcYCV0ChKxShEsjKqv42vw4JykgDr8fLlToI6NMvKaLiYrZpwdUuysh3PGchJkl6GE76y7jnq9cexOiWWAY2hAOXJnDAEXx1q1ZKi1EwuyPKPJtVTVejyK9rK438mfjUSgIXYPt9KDgtTvYoRcwKNTUbturClYlAcLNbXQXuBmjg";
             //var oldSiliconToken = "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6IjFqNV9UQnJEMmxpR002VGVES0ZWTlhqenpWcyIsImtpZCI6IjFqNV9UQnJEMmxpR002VGVES0ZWTlhqenpWcyJ9.eyJpc3MiOiJodHRwczovL2xvY2FsLmlkZW50aXR5c2VydmVyOjUwMDAiLCJhdWQiOiJodHRwczovL2xvY2FsLmlkZW50aXR5c2VydmVyOjUwMDAvcmVzb3VyY2VzIiwiZXhwIjoxNDg4NTYzNDA0LCJuYmYiOjE0ODg1NjM0MDMsImNsaWVudF9pZCI6ImRldi1zaWxpY29uIiwic2NvcGUiOiJNdmNGcm9udEVuZCJ9.IPZ_PNcqTAWmYU5PJwc74AVxNxBjzytaSow5UuIYhLcyM0pyJ_JalWkOD9mz6aqBc9ri3CJpVqDHutPDCakU4eRFGZHVGrP79Kk3fXNoYEASJ6wE_3zfrukhoXiesR6R5tI-8aQVMUMKcCvueZQ1WaEPytJDs3Th-iQDIAFl-IvA-wiRX8gWZLhF93rxi0Bb1H38UePRLzwky3XKyI2U_S8UPthyRESAjK40GEloxhMDpPSpYj8zffksqKQhy_Vcn_1XHzT16UnaZizaNMkqV0jfykbI99fvlhksHllwbN5z-IdVA4-CgyxZt09sjU6xUlPgPUIk9G6ESwHWUbHhkg";
@@ -58,7 +60,7 @@ namespace WebApiClient
             //PostBackUsingHttpClient(token.AccessToken);
 
             //EasyHttpReturnsUnsuportedMediaType(GetUserToken());
-            Console.WriteLine("Enter to quite...");
+            Console.WriteLine("Enter ...");
             Console.ReadLine();
         }
  

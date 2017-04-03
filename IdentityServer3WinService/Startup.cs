@@ -32,7 +32,7 @@ namespace IdentityServer3WinService
                         ExpireTimeSpan = TimeSpan.FromSeconds(Appsettings.HumanCookieLifetime())
                     }
                },
-                
+                RequireSsl = false,
                 SigningCertificate = Config.Certificate.Get(certificateSubject),
                 EnableWelcomePage = true,
             };

@@ -48,6 +48,16 @@ namespace IdentityServer3WinService
                 },
                 new Scope
                 {
+                    Name = IdSrv3.ScopeWebApi2,
+                    Type = ScopeType.Resource
+                },
+                new Scope
+                {
+                    Name = IdSrv3.ScopeAutoTest,
+                    Type = ScopeType.Resource
+                },
+                new Scope
+                {
                     Name = StandardScopes.Roles.Name
                 },
             };

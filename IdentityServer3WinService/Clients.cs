@@ -15,7 +15,35 @@ namespace IdentityServer3WinService
 
             return new List<Client>
         {
-           // no human involved
+                // Human
+            new Client
+            {
+                ClientName = "MVC Frontend Human",
+                ClientId = Appsettings.FrontendClientId(),
+                Enabled = true,
+
+                AccessTokenType = AccessTokenType.Jwt,
+                AccessTokenLifetime = Appsettings.HumanAccesstokenLifetime(),
+                IdentityTokenLifetime = Appsettings.HumanIdtokenLifetime(),
+
+                //AbsoluteRefreshTokenLifetime=60,
+                //AuthorizationCodeLifetime=60,
+
+                Flow = Flows.Implicit,
+
+                AllowedScopes = new List<string>
+                {
+                    Constants.StandardScopes.OpenId,
+                    Constants.StandardScopes.Roles,
+                    IdSrv3.ScopeMcvFrontEndHuman
+                },
+                RedirectUris = Appsettings.RedirectBackUrlList(),
+                PostLogoutRedirectUris= Appsettings.RedirectBackUrlList(),
+                RequireConsent=false
+                //AllowRememberConsent =true
+
+            },
+           // Silicon, no human involved
             new Client
             {
                 ClientName = "Silicon-only Client for site-site communication",
@@ -39,38 +67,37 @@ namespace IdentityServer3WinService
                     IdSrv3.ScopeEntryQueueApi,
                     IdSrv3.ScopeNancyApi,
                     IdSrv3.ScopeServiceStackApi,
-                    IdSrv3.ScopeWcfService
+                    IdSrv3.ScopeWebApi2
                 }
             },
- 
-                new Client
+           // AutoTest client, no human involved
+            new Client
+            {
+                ClientName = "Silicon client for AutoTest",
+                ClientId = Appsettings.AutoTestClientId(),
+                Enabled = true,
+
+                AccessTokenType     = AccessTokenType.Jwt,
+                AccessTokenLifetime     = Appsettings.SiliconAccesstokenLifetime(),
+                IdentityTokenLifetime   = Appsettings.SiliconIdtokenLifetime(),
+
+                Flow = Flows.ClientCredentials,
+
+                ClientSecrets = new List<Secret>
                 {
-                    ClientName = "MVC Frontend Human",
-                    ClientId = Appsettings.FrontendClientId(),
-                    Enabled = true,
+                    new Secret(Appsettings.AutoTestClientSecret().Sha256())
+                },
 
-                    AccessTokenType = AccessTokenType.Jwt,
-                    AccessTokenLifetime = Appsettings.HumanAccesstokenLifetime(),
-                    IdentityTokenLifetime = Appsettings.HumanIdtokenLifetime(),
-
-                    //AbsoluteRefreshTokenLifetime=60,
-                    //AuthorizationCodeLifetime=60,
-
-                    Flow = Flows.Implicit,
-
-                    AllowedScopes = new List<string>
-                    {
-                        Constants.StandardScopes.OpenId,
-                        Constants.StandardScopes.Roles,
-                        IdSrv3.ScopeMcvFrontEndHuman
-                    },
-                    RedirectUris = Appsettings.RedirectBackUrlList(),
-                    PostLogoutRedirectUris= Appsettings.RedirectBackUrlList(),
-                    RequireConsent=false
-                    //AllowRememberConsent =true
-
+                AllowedScopes = new List<string>
+                {
+                    IdSrv3.ScopeMvcFrontEnd, // for postback and AJAX call
+                    IdSrv3.ScopeEntryQueueApi,
+                    IdSrv3.ScopeNancyApi,
+                    IdSrv3.ScopeServiceStackApi,
+                    IdSrv3.ScopeWebApi2
                 }
-            // human is involved
+            }
+            // Ailicon, human is involved
                 //new Client
                 //{
                 //    ClientName = "Mvc Ajax On Behalf of a User",
