@@ -11,7 +11,7 @@ namespace IdentityServer3WinService
     {
         public static List<Scope> Get()
         {
-            var scopes= new List<Scope>
+            var scopes= new List<Scope> 
             {
             //requiring acces TO
                 new Scope
@@ -48,12 +48,7 @@ namespace IdentityServer3WinService
                 },
                 new Scope
                 {
-                    Name = IdSrv3.ScopeWebApi2,
-                    Type = ScopeType.Resource
-                },
-                new Scope
-                {
-                    Name = IdSrv3.ScopeAutoTest,
+                    Name = IdSrv3.ScopeMsWebApi,
                     Type = ScopeType.Resource
                 },
                 new Scope

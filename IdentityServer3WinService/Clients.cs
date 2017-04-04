@@ -63,11 +63,11 @@ namespace IdentityServer3WinService
 
                 AllowedScopes = new List<string>
                 {
-                    IdSrv3.ScopeMvcFrontEnd, // for postback and AJAX call
+                    IdSrv3.ScopeMvcFrontEnd, 
                     IdSrv3.ScopeEntryQueueApi,
                     IdSrv3.ScopeNancyApi,
                     IdSrv3.ScopeServiceStackApi,
-                    IdSrv3.ScopeWebApi2
+                    IdSrv3.ScopeMsWebApi
                 }
             },
            // AutoTest client, no human involved
@@ -90,11 +90,11 @@ namespace IdentityServer3WinService
 
                 AllowedScopes = new List<string>
                 {
-                    IdSrv3.ScopeMvcFrontEnd, // for postback and AJAX call
+                    IdSrv3.ScopeMvcFrontEnd, 
                     IdSrv3.ScopeEntryQueueApi,
                     IdSrv3.ScopeNancyApi,
                     IdSrv3.ScopeServiceStackApi,
-                    IdSrv3.ScopeWebApi2
+                    IdSrv3.ScopeMsWebApi
                 }
             }
             // Ailicon, human is involved

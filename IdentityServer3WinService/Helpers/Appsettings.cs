@@ -11,6 +11,9 @@ namespace IdentityServer3WinService.Helpers
     {
         public const string SiliconClientIdKey = "SiliconClientId";
         public const string SiliconClientSecretKey = "SiliconClientSecret";
+        public const string AutoTestClientIdKey = "AutoTestClientId";
+        public const string AutoTestClientSecretKey = "AutoTestClientSecret";
+
         public const string FrontendClientIdKey = "FrontendClientId";
         public const string UserKey = "user.@-@";
         public const string UserPasswordKey = "user.@-@.password";
@@ -64,6 +67,15 @@ namespace IdentityServer3WinService.Helpers
         public static string SiliconClientSecret()
         {
             return ConfigurationManager.AppSettings.Get(SiliconClientSecretKey);
+        }
+        public static string AutoTestClientId()
+        {
+            return ConfigurationManager.AppSettings.Get(AutoTestClientIdKey);
+        }
+
+        public static string AutoTestClientSecret()
+        {
+            return ConfigurationManager.AppSettings.Get(AutoTestClientSecretKey);
         }
         public static string FrontendClientId()
         {
