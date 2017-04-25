@@ -30,11 +30,11 @@ namespace WebApiClient
         static TokenResponse GetSiliconClientToken()
         {
             var client = new TokenClient(
-                "http://local.identityserver:5000/connect/token",
+                "https://local.identityserver:5000/connect/token",
                 "dev-silicon",
                 "dev-silicon-secret");
             
-            var token = client.RequestClientCredentialsAsync("ms-web-api2").Result;
+            var token = client.RequestClientCredentialsAsync("ms-webapi2").Result;
             if (token.IsError)
                 Console.WriteLine("Error geting Token: {0} ", token.Error);
             return token;

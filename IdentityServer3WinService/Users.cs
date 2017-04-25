@@ -18,13 +18,13 @@ namespace IdentityServer3WinService
         {
             new InMemoryUser
             {
-                Username = Appsettings.User("bob"),
-                Password = Appsettings.UserPassword("bob"),
+                Username = Appsettings.User("guest"),
+                Password = Appsettings.UserPassword("guest"),
                 Subject = "bob@hitmaster.com", //unique userid
                 Claims = new[]
                 {
                     new Claim(Constants.ClaimTypes.Name, "Bob Dylan"),
-                    new Claim(Constants.ClaimTypes.GivenName, "Bob"),
+                    new Claim(Constants.ClaimTypes.GivenName, "Guest"),
                     new Claim(Constants.ClaimTypes.FamilyName, "Dylan"),
                     new Claim(Constants.ClaimTypes.Role, "Guest"),
                     new Claim(Constants.ClaimTypes.Role, "SendMessage")
@@ -47,8 +47,8 @@ namespace IdentityServer3WinService
             },
             new InMemoryUser
             {
-                Username = "bob-nomq",
-                Password = Appsettings.UserPassword("bob"),
+                Username = "guest-no-mq",
+                Password = Appsettings.UserPassword("guest"),
                 Subject = "bob2@hitmaster.com", //unique userid
                 Claims = new[]
                 {
