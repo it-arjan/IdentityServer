@@ -23,7 +23,7 @@ namespace IdentityServer3WinService
                 Subject = "bob@hitmaster.com", //unique userid
                 Claims = new[]
                 {
-                    new Claim(Constants.ClaimTypes.Name, "Bob Dylan"),
+                    new Claim(Constants.ClaimTypes.Name, "Guest Dylan"),
                     new Claim(Constants.ClaimTypes.GivenName, "Guest"),
                     new Claim(Constants.ClaimTypes.FamilyName, "Dylan"),
                     new Claim(Constants.ClaimTypes.Role, "Guest"),
@@ -52,8 +52,8 @@ namespace IdentityServer3WinService
                 Subject = "bob2@hitmaster.com", //unique userid
                 Claims = new[]
                 {
-                    new Claim(Constants.ClaimTypes.Name, "Bob without MQ access"),
-                    new Claim(Constants.ClaimTypes.GivenName, "Bob-no-MQ"),
+                    new Claim(Constants.ClaimTypes.Name, "Guest without MQ access"),
+                    new Claim(Constants.ClaimTypes.GivenName, "Guest-no-MQ"),
                     new Claim(Constants.ClaimTypes.FamilyName, "no MQ"),
                     new Claim(Constants.ClaimTypes.Role, "Guest"),
                 }

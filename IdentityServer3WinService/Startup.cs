@@ -15,6 +15,7 @@ namespace IdentityServer3WinService
         private ILogger _logger = LogManager.CreateLogger(typeof(Startup), Appsettings.LogLevel());
         public void Configuration(IAppBuilder app)
         {
+
             string certificateSubject = Appsettings.Hostname();
             var options = new IdentityServerOptions
             {
@@ -28,7 +29,7 @@ namespace IdentityServer3WinService
                     EnablePostSignOutAutoRedirect = true,
                     CookieOptions = new CookieOptions
                     {
-                        AllowRememberMe = false,
+                        AllowRememberMe = Appsettings.HumanAllowRemember(),
                         ExpireTimeSpan = TimeSpan.FromSeconds(Appsettings.HumanCookieLifetime())
                     }
                },
@@ -38,5 +39,6 @@ namespace IdentityServer3WinService
             };
             app.UseIdentityServer(options);
         }
+
     }
 }

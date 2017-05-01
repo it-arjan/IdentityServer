@@ -27,7 +27,8 @@ namespace IdentityServer3WinService.Helpers
         public const string HumanAccesstotkenLifetimeKey = "human.accesstoken.lifetime.secs";
 
         public const string HumanCookieLifetimeKey = "human.cookie.lifetime.secs";
-        
+        public const string HumanAllowRememberKey = "human.allow.remember.me";
+
         public const string SiliconIdtotkenLifetimeKey = "silicon.idtoken.lifetime.secs";
         public const string SiliconAccesstotkenLifetimeKey = "silicon.accesstoken.lifetime.secs";
         //private const
@@ -98,27 +99,31 @@ namespace IdentityServer3WinService.Helpers
 
         public static int HumanAccesstokenLifetime()
         {
-            return _getIntSetting(HumanCookieLifetimeKey);
+            return _getIntSetting(HumanAccesstotkenLifetimeKey);
         }
         public static int HumanCookieLifetime()
         {
             return _getIntSetting(HumanCookieLifetimeKey);
         }
-
+        public static bool HumanAllowRemember()
+        {
+            return _getBoolSetting(HumanAllowRememberKey);
+        }
+        
         public static int SiliconAccesstokenLifetime()
         {
             return _getIntSetting(SiliconAccesstotkenLifetimeKey);
         }
 
-        public static int SiliconIdtokenLifetime()
-        {
-            return _getIntSetting(SiliconIdtotkenLifetimeKey);
-        }
-
         private static int _getIntSetting(string name)
         {
             var val = ConfigurationManager.AppSettings.Get(name);
-            return val != null ? Convert.ToInt16(val) : 3601;
+            return val != null ? Convert.ToInt16(val) : 0;
+        }
+        private static bool _getBoolSetting(string name)
+        {
+            var val = ConfigurationManager.AppSettings.Get(name);
+            return val != null ? Convert.ToBoolean(val) : false;
         }
     }
 }

@@ -52,7 +52,7 @@ namespace IdentityServer3WinService
 
                 AccessTokenType     = AccessTokenType.Jwt,
                 AccessTokenLifetime     = Appsettings.SiliconAccesstokenLifetime(),
-                IdentityTokenLifetime   = Appsettings.SiliconIdtokenLifetime(),
+                //IdentityTokenLifetime   = Appsettings.SiliconIdtokenLifetime(),
 
                 Flow = Flows.ClientCredentials,
 
@@ -79,7 +79,7 @@ namespace IdentityServer3WinService
 
                 AccessTokenType     = AccessTokenType.Jwt,
                 AccessTokenLifetime     = Appsettings.SiliconAccesstokenLifetime(),
-                IdentityTokenLifetime   = Appsettings.SiliconIdtokenLifetime(),
+                //IdentityTokenLifetime   = Appsettings.SiliconIdtokenLifetime(),
 
                 Flow = Flows.ClientCredentials,
 
