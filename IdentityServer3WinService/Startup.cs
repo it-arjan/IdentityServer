@@ -7,6 +7,7 @@ using IdentityServer3.Core.Configuration;
 using IdentityServer3WinService.Helpers;
 
 using NLogWrapper;
+using IdentityServer3.Core.Services;
 
 namespace IdentityServer3WinService
 {
@@ -23,8 +24,9 @@ namespace IdentityServer3WinService
                             .UseInMemoryClients(Clients.Get())
                             .UseInMemoryScopes(Scopes.Get())
                             .UseInMemoryUsers(Users.Get()),
+                
 
-                AuthenticationOptions= new AuthenticationOptions
+                AuthenticationOptions = new AuthenticationOptions
                 {
                     EnablePostSignOutAutoRedirect = true,
                     CookieOptions = new CookieOptions
@@ -37,6 +39,7 @@ namespace IdentityServer3WinService
                 SigningCertificate = Config.Certificate.Get(certificateSubject),
                 EnableWelcomePage = true,
             };
+            options.Factory.CorsPolicyService = new Registration<ICorsPolicyService>(typeof(CorsPolicy));
             app.UseIdentityServer(options);
         }
 

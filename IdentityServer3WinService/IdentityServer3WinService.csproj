@@ -120,6 +120,7 @@
   <ItemGroup>
     <Compile Include="Clients.cs" />
     <Compile Include="Config\Certificate.cs" />
+    <Compile Include="CorsPolicy.cs" />
     <Compile Include="Helpers\Appsettings.cs" />
     <Compile Include="Helpers\IdSrv3.cs" />
     <Compile Include="ProjectInstaller.cs">
@@ -169,6 +170,12 @@
     </BootstrapperPackage>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PreBuildEvent>net stop WebIdentityServer3Host</PreBuildEvent>
+  </PropertyGroup>
+  <PropertyGroup>
+    <PostBuildEvent>net start WebIdentityServer3Host</PostBuildEvent>
+  </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
