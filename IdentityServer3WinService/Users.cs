@@ -18,8 +18,8 @@ namespace IdentityServer3WinService
         {
             new InMemoryUser
             {
-                Username = Appsettings.User("guest"),
-                Password = Appsettings.UserPassword("guest"),
+                Username = Configsettings.User("guest"),
+                Password = Configsettings.UserPassword("guest"),
                 Subject = "bob@hitmaster.com", //unique userid
                 Claims = new[]
                 {
@@ -32,8 +32,8 @@ namespace IdentityServer3WinService
             },
             new InMemoryUser
             {
-                Username = Appsettings.User("admin"),
-                Password = Appsettings.UserPassword("admin"),
+                Username = Configsettings.User("admin"),
+                Password = Configsettings.UserPassword("admin"),
                 Subject = "admin@messagequeuefrontend.com", //unique userid
                 Claims = new[]
                 {
@@ -48,7 +48,7 @@ namespace IdentityServer3WinService
             new InMemoryUser
             {
                 Username = "guest-no-mq",
-                Password = Appsettings.UserPassword("guest"),
+                Password = Configsettings.UserPassword("guest"),
                 Subject = "bob2@hitmaster.com", //unique userid
                 Claims = new[]
                 {

@@ -7,7 +7,7 @@ using System.Configuration;
 
 namespace IdentityServer3WinService.Helpers
 {
-    static class Appsettings
+    static class Configsettings
     {
         public const string SiliconClientIdKey = "SiliconClientId";
         public const string SiliconClientSecretKey = "SiliconClientSecret";
@@ -29,7 +29,6 @@ namespace IdentityServer3WinService.Helpers
         public const string HumanCookieLifetimeKey = "human.cookie.lifetime.secs";
         public const string HumanAllowRememberKey = "human.allow.remember.me";
 
-        public const string SiliconIdtotkenLifetimeKey = "silicon.idtoken.lifetime.secs";
         public const string SiliconAccesstotkenLifetimeKey = "silicon.accesstoken.lifetime.secs";
         //private const
         public static string HostUrl()

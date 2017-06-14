@@ -11,7 +11,7 @@ namespace IdentityServer3WinService
 {
     static class Program
     {
-        static ILogger _logger = LogManager.CreateLogger(typeof(Program), Appsettings.LogLevel());
+        static ILogger _logger = LogManager.CreateLogger(typeof(Program), Configsettings.LogLevel());
 
         /// <summary>
         /// The main entry point for the application.

@@ -19,12 +19,12 @@ namespace IdentityServer3WinService
             new Client
             {
                 ClientName = "MVC Frontend Human",
-                ClientId = Appsettings.FrontendClientId(),
+                ClientId = Configsettings.FrontendClientId(),
                 Enabled = true,
 
                 AccessTokenType = AccessTokenType.Jwt,
-                AccessTokenLifetime = Appsettings.HumanAccesstokenLifetime(),
-                IdentityTokenLifetime = Appsettings.HumanIdtokenLifetime(),
+                AccessTokenLifetime = Configsettings.HumanAccesstokenLifetime(),
+                IdentityTokenLifetime = Configsettings.HumanIdtokenLifetime(),
 
                 //AbsoluteRefreshTokenLifetime=60,
                 //AuthorizationCodeLifetime=60,
@@ -37,8 +37,8 @@ namespace IdentityServer3WinService
                     Constants.StandardScopes.Roles,
                     IdSrv3.ScopeMcvFrontEndHuman
                 },
-                RedirectUris = Appsettings.RedirectBackUrlList(),
-                PostLogoutRedirectUris= Appsettings.RedirectBackUrlList(),
+                RedirectUris = Configsettings.RedirectBackUrlList(),
+                PostLogoutRedirectUris= Configsettings.RedirectBackUrlList(),
                 RequireConsent=false
                 //AllowRememberConsent =true
 
@@ -47,18 +47,18 @@ namespace IdentityServer3WinService
             new Client
             {
                 ClientName = "Silicon-only Client for site-site communication",
-                ClientId = Appsettings.SiliconClientId(),
+                ClientId = Configsettings.SiliconClientId(),
                 Enabled = true,
 
                 AccessTokenType     = AccessTokenType.Jwt,
-                AccessTokenLifetime     = Appsettings.SiliconAccesstokenLifetime(),
+                AccessTokenLifetime     = Configsettings.SiliconAccesstokenLifetime(),
                 //IdentityTokenLifetime   = Appsettings.SiliconIdtokenLifetime(),
 
                 Flow = Flows.ClientCredentials,
 
                 ClientSecrets = new List<Secret>
                 {
-                    new Secret(Appsettings.SiliconClientSecret().Sha256())
+                    new Secret(Configsettings.SiliconClientSecret().Sha256())
                 },
 
                 AllowedScopes = new List<string>
@@ -74,18 +74,18 @@ namespace IdentityServer3WinService
             new Client
             {
                 ClientName = "Silicon client for AutoTest",
-                ClientId = Appsettings.AutoTestClientId(),
+                ClientId = Configsettings.AutoTestClientId(),
                 Enabled = true,
 
                 AccessTokenType     = AccessTokenType.Jwt,
-                AccessTokenLifetime     = Appsettings.SiliconAccesstokenLifetime(),
+                AccessTokenLifetime     = Configsettings.SiliconAccesstokenLifetime(),
                 //IdentityTokenLifetime   = Appsettings.SiliconIdtokenLifetime(),
 
                 Flow = Flows.ClientCredentials,
 
                 ClientSecrets = new List<Secret>
                 {
-                    new Secret(Appsettings.AutoTestClientSecret().Sha256())
+                    new Secret(Configsettings.AutoTestClientSecret().Sha256())
                 },
 
                 AllowedScopes = new List<string>

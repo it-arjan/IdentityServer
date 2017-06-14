@@ -13,11 +13,11 @@ namespace IdentityServer3WinService
 {
     public class Startup
     {
-        private ILogger _logger = LogManager.CreateLogger(typeof(Startup), Appsettings.LogLevel());
+        private ILogger _logger = LogManager.CreateLogger(typeof(Startup), Configsettings.LogLevel());
         public void Configuration(IAppBuilder app)
         {
 
-            string certificateSubject = Appsettings.Hostname();
+            string certificateSubject = Configsettings.Hostname();
             var options = new IdentityServerOptions
             {
                 Factory = new IdentityServerServiceFactory()
@@ -31,8 +31,8 @@ namespace IdentityServer3WinService
                     EnablePostSignOutAutoRedirect = true,
                     CookieOptions = new CookieOptions
                     {
-                        AllowRememberMe = Appsettings.HumanAllowRemember(),
-                        ExpireTimeSpan = TimeSpan.FromSeconds(Appsettings.HumanCookieLifetime())
+                        AllowRememberMe = Configsettings.HumanAllowRemember(),
+                        ExpireTimeSpan = TimeSpan.FromSeconds(Configsettings.HumanCookieLifetime())
                     }
                },
                 RequireSsl = false,

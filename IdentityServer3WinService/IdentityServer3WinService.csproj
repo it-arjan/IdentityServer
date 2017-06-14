@@ -121,8 +121,9 @@
     <Compile Include="Clients.cs" />
     <Compile Include="Config\Certificate.cs" />
     <Compile Include="CorsPolicy.cs" />
-    <Compile Include="Helpers\Appsettings.cs" />
+    <Compile Include="Helpers\Configsettings.cs" />
     <Compile Include="Helpers\IdSrv3.cs" />
+    <Compile Include="Helpers\SettingsChecker.cs" />
     <Compile Include="ProjectInstaller.cs">
       <SubType>Component</SubType>
     </Compile>
