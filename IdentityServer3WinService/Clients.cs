@@ -66,6 +66,7 @@ namespace IdentityServer3WinService
                     IdSrv3.ScopeMvcFrontEnd, 
                     IdSrv3.ScopeEntryQueueApi,
                     IdSrv3.ScopeNancyApi,
+                    IdSrv3.ScopeFrontendDataApi,
                     IdSrv3.ScopeServiceStackApi,
                     IdSrv3.ScopeMsWebApi
                 }

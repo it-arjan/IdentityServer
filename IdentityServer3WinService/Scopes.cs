@@ -38,6 +38,11 @@ namespace IdentityServer3WinService
                 },
                 new Scope
                 {
+                    Name = IdSrv3.ScopeFrontendDataApi,
+                    Type = ScopeType.Resource
+                },
+                new Scope
+                {
                     Name = IdSrv3.ScopeServiceStackApi,
                     Type = ScopeType.Resource
                 },
